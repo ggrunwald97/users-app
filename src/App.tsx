@@ -1,57 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect } from 'react';
 import './App.css';
+import LoginCard from './features/login/login-card';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate
+} from "react-router-dom";
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from './common-components/header';
+import { useSelector } from 'react-redux';
+import { RootState } from './app/store';
+import UsersOverview from './features/users/components/users-overview';
+
+const dark = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 
 function App() {
+  const isUserLoggedIn = useSelector((state: RootState) => state.login.isUserLoggedIn);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <ThemeProvider theme={dark}>
+      <CssBaseline enableColorScheme />
+      <div className="App">
+      <BrowserRouter>
+        <Header />
+        <div className="App-header">
+          <Routes>
+            <Route path="login" element={<LoginCard />} />
+            <Route path="/" element={<Navigate replace to={isUserLoggedIn ? "/users" : "/login" } />} />
+            <Route path="/users" element={<UsersOverview />} />
+          </Routes>
+        </div>
+        </BrowserRouter>
+
+      </div>
+    </ThemeProvider>
   );
 }
 
