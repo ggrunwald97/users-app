@@ -55,6 +55,7 @@ export const UserListItem = (props: userListItemProps) => {
     } as User
 
     dispatch(updateUser({userId: user.id, postBody }))
+    setIsEdit(false);
   };
 
   const usersList = (

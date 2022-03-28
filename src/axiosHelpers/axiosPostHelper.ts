@@ -8,7 +8,7 @@ let config = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
     "access-control-allow-methods":"GET, POST, DELETE, PUT, OPTIONS, PATCH, HEAD",
-    "Authentication": `Bearer ${ACCESS_TOKEN}`
+    "Authorization": `Bearer ${ACCESS_TOKEN}`
   }
 }
 

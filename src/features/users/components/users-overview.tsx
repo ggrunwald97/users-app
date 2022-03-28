@@ -63,6 +63,7 @@ export const UsersOverview = () => {
     } as User
 
     dispatch(addUser(postBody))
+    setIsAdd(false);
   }
 
   const addNewUserView = (

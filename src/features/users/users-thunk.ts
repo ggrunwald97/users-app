@@ -26,7 +26,7 @@ export const addUser = createAsyncThunk(
 
     const store: RootStateOrAny = thunkAPI.getState();
     let usersList = JSON.parse(JSON.stringify(store.users.usersList));
-    usersList = usersList.unshift(response.data);
+    usersList.unshift(response.data);
     return usersList;
   }
 )
@@ -45,7 +45,7 @@ export const updateUser = createAsyncThunk(
     let usersList = JSON.parse(JSON.stringify(store.users.usersList));
     const userIndexToUpdate = usersList.findIndex((user: User) => user.id === data.userId);
 
-    usersList = usersList.splice(userIndexToUpdate, 1, response.data)
+    usersList.splice(userIndexToUpdate, 1, response.data)
     return usersList;
   }
 )
@@ -64,7 +64,7 @@ export const deleteUser = createAsyncThunk(
     let usersList = JSON.parse(JSON.stringify(store.users.usersList));
 
     const userIndexToDelete = usersList.findIndex((user: User) => user.id === userId);
-    usersList = usersList.splice(userIndexToDelete, 1);
+    usersList.splice(userIndexToDelete, 1);
     return usersList;
   }
 )
