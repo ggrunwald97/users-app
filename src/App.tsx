@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import LoginCard from './features/login/login-card';
 import {
@@ -6,7 +6,6 @@ import {
   Routes,
   Route,
   Navigate,
-  useNavigate
 } from "react-router-dom";
 import { CssBaseline } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -14,6 +13,7 @@ import Header from './common-components/header';
 import { useSelector } from 'react-redux';
 import { RootState } from './app/store';
 import UsersOverview from './features/users/components/users-overview';
+import AlertToast from './common-components/alertToast';
 
 const dark = createTheme({
   palette: {
@@ -39,7 +39,7 @@ function App() {
           </Routes>
         </div>
         </BrowserRouter>
-
+        <AlertToast />
       </div>
     </ThemeProvider>
   );

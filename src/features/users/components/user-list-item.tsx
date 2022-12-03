@@ -54,20 +54,20 @@ export const UserListItem = (props: userListItemProps) => {
       status: formik.values?.status,
     } as User
 
-    dispatch(updateUser({userId: user.id, postBody }))
+    dispatch(updateUser({userId: user._id, postBody }))
     setIsEdit(false);
   };
 
   const usersList = (
     <div>
-      {user?.id && (
+      {user?._id && (
         <Box padding={2} paddingBottom={4}>
           <Paper elevation={4}>
             <Grid container spacing={1}>
               {userIdNameEmailHeaders}
               <Grid item xs={4}>
                 <Typography>
-                  {user.id}
+                  {user._id}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -103,7 +103,7 @@ export const UserListItem = (props: userListItemProps) => {
 
   const editUserView = (
     <div>
-      {user?.id && (
+      {user?._id && (
         <Box padding={2} paddingBottom={4}>
             <Grid item xs={12} paddingBottom={4}>
               <Typography>
@@ -119,7 +119,7 @@ export const UserListItem = (props: userListItemProps) => {
                   </Typography>
                 </Paper>
                 <Typography>
-                  {user.id}
+                  {user._id}
                 </Typography>
               </Grid>
               <Grid item xs={4}>
@@ -194,7 +194,7 @@ export const UserListItem = (props: userListItemProps) => {
         </Grid>
       )}
       <Grid item xs={12} paddingTop={3}>
-        <IconButton onClick={() => dispatch(deleteUser(user.id))}>
+        <IconButton onClick={() => dispatch(deleteUser(user._id))}>
           <DeleteForeverIcon fontSize="large"/>
         </IconButton>
       </Grid>

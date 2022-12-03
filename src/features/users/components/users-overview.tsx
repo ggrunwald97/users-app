@@ -182,7 +182,7 @@ export const UsersOverview = () => {
           </Box>
         {usersList?.length > 0 ? (
           usersList.map((user: User) => (
-            <UserListItem key={user?.id} user={user} />
+            <UserListItem key={user?._id} user={user} />
           ))) : (
             <div>
               Sorry, no users found.

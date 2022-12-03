@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { AlertShape } from '../../app/models/Alert';
 import { User } from '../../app/models/User';
 import { deleteUser, getUsers, addUser, updateUser } from './users-thunk';
 
@@ -7,6 +8,7 @@ interface user {
   usersList: User[],
   errorMessage: string,
   isLoading: boolean,
+  alert: AlertShape,
 };
 
 const initialState: user = {
@@ -14,6 +16,7 @@ const initialState: user = {
   usersList: [],
   errorMessage: '',
   isLoading: false,
+  alert: {} as AlertShape,
 };
 
 export const userSlice = createSlice({
@@ -25,6 +28,9 @@ export const userSlice = createSlice({
     },
     clearError: (state) => {
       state.errorMessage = "";
+    },
+    setAlert: (state, action) => {
+      state.alert = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -46,6 +52,8 @@ export const userSlice = createSlice({
     })
   },
 });
+
+export const { setAlert } = userSlice.actions;
 
 export default userSlice.reducer;
 
